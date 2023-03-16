@@ -1,1 +1,61 @@
 // app global css in SCSS form
+@import "core/reset";
+@import "core/global";
+
+:root {
+  --viewport  : 1120px;
+}
+
+html, body, #app {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  .center {
+    max-width: var(--viewport);
+    width: 100%;
+    height: 100%;
+  }
+  .global-title {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 46px;
+    color: var(--midnight-express);
+  }
+  .sub-title {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 34px;
+    color: var(--midnight-express);
+  }
+  .form-title {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--midnight-express);
+  }
+  .text-midnight-express {
+    color: var(--midnight-express);
+    .q-stepper__dot {
+      position: relative;
+      background: none;
+      border: 1px solid var(--midnight-express);
+      border-radius: 50%;
+      color: var(--midnight-express);
+    }
+  }
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}

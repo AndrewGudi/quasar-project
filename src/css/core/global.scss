@@ -1,0 +1,38 @@
+@import "src/css/_colors.scss";
+@import "fonts";
+body {
+  font-family: "Poppins", Arial, Helvetica, "Hiragino Sans GB", "Microsoft YaHei",
+  "WenQuanYi Micro Hei", sans-serif;
+}
+*::-webkit-scrollbar,
+.md-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-thumb,
+.md-scrollbar::-webkit-scrollbar-thumb {
+  border-width: 1px;
+  border-color: var(--border_color_light);
+  background-color: var(--border_color_light);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover,
+.md-scrollbar::-webkit-scrollbar-thumb:hover {
+  border-width: 1px;
+  border-color: #aaa;
+  background-color: #aaa;
+}
+
+*::-webkit-scrollbar-track,
+.md-scrollbar::-webkit-scrollbar-track {
+  border-width: 0;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-track:hover,
+.md-scrollbar::-webkit-scrollbar-track:hover {
+  border-left: solid 1px var(--border_color_light);
+  background-color: #eee;
+}
