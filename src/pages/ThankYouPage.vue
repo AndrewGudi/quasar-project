@@ -102,12 +102,17 @@ const back = () => {
     border-radius: 16px;
     font-weight: 400;
     font-size: 14px;
+    line-height: 24px !important;
     .name {
+      display: flex;
+      align-items: center;
       margin-right: 60px;
       min-width: 65px;
       color: var(--text-color);
     }
     .info {
+      display: flex;
+      align-items: center;
       margin: 0;
     }
   }
