@@ -52,10 +52,30 @@ html, body, #app {
     .q-stepper__dot {
       position: relative;
       background: none;
-      border: 1px solid var(--midnight-express);
+      background: var(--midnight-express);
       border-radius: 50%;
       color: var(--midnight-express);
     }
+  }
+
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  .q-card {
+    border-radius: 16px;
+  }
+  .text--semi-bold {
+    font-weight: 600;
+    color: var(--midnight-express);
   }
 }
 
