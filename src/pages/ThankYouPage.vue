@@ -55,6 +55,7 @@ const back = () => {
 .thank-page{
   padding: 60px 0;
   .thank {
+    padding: 60px 0;
     margin-bottom: 30px;
     .q-icon {
       height: 210px;
