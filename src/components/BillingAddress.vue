@@ -4,9 +4,9 @@ q-card(flat).flex.column
     ref="addressRef"
   )
     .text-h4.sub-title {{ 'Shipping Address' }}
-    .flex.column.q-mt-lg
+    .flex.column.q-mt-25
       .form-title {{'Country of Origin'}}
-      q-select.q-mt-md(
+      q-select(
         outlined
         v-model="formData.country"
         :options="options"
@@ -15,20 +15,20 @@ q-card(flat).flex.column
         )
         template(v-slot:prepend)
           q-icon(name="map")
-    .row.justify-between.q-mt-md.gap-section
-      .flex.column(:style="{width: '45%'}")
+    .row.justify-between.gap-section
+      .flex.column(:style="{width: $q.screen.xs ? '100%' : '48%'}")
         .flex.column.form-title {{'First Name *'}}
-        q-input.q-mt-sm(outlined v-model="formData.firstName" placeholder="Enter your first name" type="text")
+        q-input.q-mb-20(outlined v-model="formData.firstName" placeholder="Enter your first name" type="text" :rules="[]")
           template(v-slot:prepend)
             q-icon(name="user")
-      .flex.column(:style="{width: '45%'}")
+      .flex.column(:style="{width:  $q.screen.xs ? '100%' : '48%'}")
         .form-title {{'Last Name'}}
-        q-input.q-mt-sm(outlined v-model="formData.lastName" placeholder="Enter your last name" type="text")
+        q-input.q-mb-20(outlined v-model="formData.lastName" placeholder="Enter your last name" type="text")
           template(v-slot:prepend)
             q-icon(name="user")
-    .flex.column.q-mt-sm
+    .flex.column
       .form-title {{'Address *'}}
-      q-input.q-mt-sm(
+      q-input(
         outlined
         v-model="formData.address"
         placeholder="Enter your address"
@@ -37,10 +37,10 @@ q-card(flat).flex.column
         )
         template(v-slot:prepend)
           q-icon(name="home")
-    .row.justify-between.q-mt-md.gap-section
-      .flex.column(:style="{width: '45%'}")
+    .row.justify-between.gap-section
+      .flex.column(:style="{width:  $q.screen.xs ? '100%' : '48%'}")
         .flex.column.form-title {{'Apartment (optional)'}}
-        q-input.q-mt-sm(
+        q-input.q-mb-20(
           outlined
           v-model="formData.apartment"
           placeholder="Enter your apartment"
@@ -48,20 +48,20 @@ q-card(flat).flex.column
           )
           template(v-slot:prepend)
             q-icon(name="building")
-      .flex.column(:style="{width: '45%'}")
+      .flex.column(:style="{width:  $q.screen.xs ? '100%' : '48%'}")
         .form-title {{'Suit (optional)'}}
-        q-input.q-mt-sm(outlined v-model="formData.suit" placeholder="Enter your suit" type="text")
+        q-input.q-mb-20(outlined v-model="formData.suit" placeholder="Enter your suit" type="text")
           template(v-slot:prepend)
             q-icon(name="building")
-    .row.justify-between.q-mt-md.gap-section
-      .flex.column(:style="{width: '45%'}")
+    .row.justify-between.gap-section
+      .flex.column(:style="{width:  $q.screen.xs ? '100%' : '48%'}")
         .flex.column.form-title {{'Post Code'}}
-        q-input.q-mt-sm(outlined v-model="formData.code" placeholder="Enter your post code" type="text")
+        q-input.q-mb-20(outlined v-model="formData.code" placeholder="Enter your post code" type="text")
           template(v-slot:prepend)
             q-icon(name="map-marker-plus")
-      .flex.column(:style="{width: '45%'}")
+      .flex.column(:style="{width:  $q.screen.xs ? '100%' : '48%'}")
         .form-title {{'City'}}
-        q-select.q-mt-sm(outlined v-model="formData.city" :options="options" label="Select your city")
+        q-select.q-mb-20(outlined v-model="formData.city" :options="options" label="Select your city")
           template(v-slot:prepend)
             q-icon(name="home")
 </template>
@@ -86,9 +86,17 @@ const formData = reactive({
 <style scoped lang="scss">
 .q-field {
   &::v-deep(.q-field__inner) {
+    margin-top: 10px;
     .q-field__control {
       border-radius: 16px;
       background: #F1F3F6;
+      @media (max-width: $breakpoint-sm-max) {
+        height: 46px;
+        min-height: 46px;
+        .q-field__marginal {
+          height: 46px;
+        }
+      }
       &:before {
         border-color: #F1F3F6;
       }

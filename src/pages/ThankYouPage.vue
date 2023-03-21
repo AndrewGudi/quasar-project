@@ -36,9 +36,14 @@ q-page.row.justify-between.thank-page
 import ToggleComponent from '../components/ToggleComponent';
 import BasketSection from 'components/BasketSection.vue';
 import {useQuasar} from 'quasar';
-import {computed} from 'vue';
+import {computed, onMounted} from 'vue';
 import {useRouter} from 'vue-router';
+import {lol} from 'src/composables/paymentActions';
 const {screen} = useQuasar();
+
+onMounted(() => {
+  lol.basket = JSON.parse(localStorage.getItem('basket') || '[]');
+})
 
 const isTablet = computed(() => {
   return 1024 <= screen.width

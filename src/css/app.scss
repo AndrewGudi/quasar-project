@@ -10,6 +10,12 @@ html, body, #app {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  .q-mb-20 {
+    margin-bottom: 20px;
+  }
+  .q-mt-25 {
+    margin-top: 25px;
+  }
   .center {
     max-width: var(--viewport);
     width: 100%;

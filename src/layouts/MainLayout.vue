@@ -28,11 +28,12 @@ header {
     margin: 0 40px;
     max-width: var(--viewport);
     @media (max-width: $breakpoint-sm-max) {
-      margin: 0 40px;
+      margin: 0;
+      padding: 60px 40px;
     }
     @media (max-width: $breakpoint-xs-max) {
-      margin: 0 16px;
-      padding: 30px 0;
+      margin: 0;
+      padding: 30px 16px;
     }
   }
 }

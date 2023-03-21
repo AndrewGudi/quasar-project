@@ -1,7 +1,7 @@
 <template lang="pug">
 q-page.row.shop
   .col-xs-12.col-sm-12.col-md-8.col-lg-8.col-xl-8
-    q-carousel.text-white.swipper.q-mb-lg(v-model='slide' transition-prev='slide-right' transition-next='slide-left' swipeable='' animated='' control-color='white' arrows='' height='520px')
+    q-carousel.text-white.swipper(v-model='slide' transition-prev='slide-right' transition-next='slide-left' swipeable='' animated='' control-color='white' arrows='')
       q-carousel-slide.column.no-wrap.flex-center(v-for="(item, index) in lol.basket" :name='index')
         q-img(:src='require(`src/assets/${item.img}.svg`)')
     q-card(flat bordered).q-pa-md.counts
@@ -21,7 +21,7 @@ q-page.row.shop
       br
       br
       q-item-label {{ 'Mauris augue nulla proin vel a. Facilisis fringilla molestie dignissim elit orci malesuada. Lorem sit sagittis vitae nulla id. Mauris ipsum sed sed faucibus. Nulla amet metus gravida orci faucibus nisl eros arcu lorem. Nullam ornare molestie nam id gravida volutpat bibendum sem feugiat. Neque vulputate in et maecenas porta mi tellus. In massa porttitor urna quis volutpat at.' }}
-    .row.justify-between.q-mb-xl.q-gutter-lg
+    .row.justify-between.q-gutter-md
       q-card.secure(flat bordered)
         q-card-section
           q-item
@@ -42,9 +42,13 @@ q-page.row.shop
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {lol} from 'src/composables/paymentActions';
 import {useRouter} from 'vue-router';
+
+onMounted(() => {
+  localStorage.setItem('basket', JSON.stringify(lol.basket))
+})
 
 const slide = ref(0)
 const activeItem = computed(() => {
@@ -55,6 +59,7 @@ const router = useRouter();
 const send = () => {
   lol.basket.forEach((item) => {
     if (item.count) {
+      localStorage.setItem('basket', JSON.stringify(lol.basket))
       router.push({name: 'payment'})
     }
   })
@@ -66,6 +71,16 @@ const send = () => {
   display: flex;
   justify-content: center;
   &::v-deep(.swipper) {
+    margin-bottom: 30px;
+    height: 520px;
+    @media (max-width: $breakpoint-sm-max) {
+      margin-bottom: 40px;
+      height: 437px;
+    }
+    @media (max-width: $breakpoint-xs-max) {
+      margin-bottom: 30px;
+      height: 226px;
+    }
     &.q-carousel {
       border-radius: 32px;
       .q-carousel__slide {
@@ -83,6 +98,9 @@ const send = () => {
   }
   .counts {
     margin-bottom: 40px;
+    @media (max-width: $breakpoint-xs-max) {
+      margin-bottom: 30px;
+    }
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -136,7 +154,7 @@ const send = () => {
           color: var(--text-color);
         }
         .q-btn {
-          width: 57px;
+          width: 50px;
           height: 50px;
           border-radius: 16px;
         }
@@ -148,19 +166,41 @@ const send = () => {
     }
   }
   .q-item.text {
+    padding: 0;
     margin-bottom: 40px;
+    @media (max-width: $breakpoint-xs-max) {
+      margin-bottom: 30px;
+    }
     &::v-deep(.q-item__label) {
       font-size: 18px;
       line-height: 28px !important;
       letter-spacing: -0.1px;
       color: var(--text-color);
+      @media (max-width: $breakpoint-sm-max) {
+        font-size: 16px;
+        line-height: 26px !important;
+      }
+      @media (max-width: $breakpoint-xs-max) {
+        font-size: 14px;
+        line-height: 24px !important;
+      }
       &:nth-child(1) {
         font-weight: 500;
       }
     }
   }
   .secure {
-    max-width: 394px;
+    max-width: calc(65% - 16px);
+    width: 100%;
+    @media (max-width: $breakpoint-xs-max) {
+      max-width: inherit;
+      width: 100%;
+    }
+    .q-item {
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
     .q-icon {
       width: 24px;
       height: 24px;
@@ -175,13 +215,27 @@ const send = () => {
       font-weight: 400;
       font-size: 16px;
       line-height: 26px !important;
+      @media (max-width: $breakpoint-xs-max) {
+        font-size: 14px;
+        line-height: 21px !important;
+      }
       span {
         font-weight: 500;
       }
     }
   }
   .support {
-    max-width: 250px;
+    max-width: calc(35% - 16px);
+    width: 100%;
+    @media (max-width: $breakpoint-xs-max) {
+      max-width: inherit;
+      width: 100%;
+    }
+    .q-item {
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
     .q-icon {
       width: 63px;
       height: 70px;
@@ -200,11 +254,24 @@ const send = () => {
     }
   }
   .buttons {
-    .q-btn {
+    margin-top: 40px;
+    @media (max-width: $breakpoint-xs-max) {
+      margin-top: 30px;
+    }
+    &::v-deep(.q-btn) {
       text-transform: inherit !important;
       font-weight: 600;
       font-size: 18px;
       line-height: 24px !important;
+      @media (max-width: $breakpoint-xs-max) {
+        font-weight: 500;
+        font-size: 16px !important;
+        line-height: 20px !important;
+        width: 100% !important;
+        border-radius: 10px;
+        height: 42px !important;
+        margin-bottom: 0;
+      }
     }
     .send {
       height: 77px;
@@ -214,6 +281,11 @@ const send = () => {
       margin-bottom: 30px;
       background: var(--midnight-express);
       color: white;
+      padding: 0;
+      @media (max-width: $breakpoint-xs-max) {
+        margin-bottom: 15px;
+        border-radius: 10px;
+      }
     }
   }
 }

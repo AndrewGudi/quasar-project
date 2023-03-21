@@ -15,7 +15,7 @@ q-card.basket(flat)
           q-item-label(caption) {{ 'X' + item.count }}
         q-item-section(side)
           q-item-label.text--semi-bold  {{ '$' + item.price }}
-  q-card-section.row.input
+  q-card-section.row.input(v-if="!isComplete")
     q-input.q-pt-md.q-pb-md(outlined rounded bg-color="white" placeholder="Discount code" type="text")
       template(v-slot:append="" v-if="isTablet" )
         q-btn.bg-black.text-white.text-capitalize(flat rounded) {{'Apply'}}
