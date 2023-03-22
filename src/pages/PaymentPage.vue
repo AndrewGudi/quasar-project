@@ -1,6 +1,6 @@
 <template lang="pug">
-q-page(width="100%").row.justify-between.center.payment-content
-  .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xl-6
+q-page(width="100%").row.no-wrap.center.payment-content
+  section.left
     .global-title {{ 'Checkout' }}
     q-stepper(
     v-model="step"
@@ -11,8 +11,8 @@ q-page(width="100%").row.justify-between.center.payment-content
       q-step(:name='1' activeIcon="none" title='Information' prefix="1" :done="step > 1")
         toggle-component
         payments-cards
-        section.q-mb-xl
-          q-card(flat).q-mb-xl.flex.column
+        section
+          q-card(flat).flex.column.user-form
             q-form(
               ref="userRef"
             )
@@ -94,10 +94,10 @@ q-page(width="100%").row.justify-between.center.payment-content
               .text-subtitle2.sub-text.q-mb-md {{ 'Specify the address for your payment option' }}
               .flex.column.radio
                 q-radio(v-model="checkBox" :val="1" label="Same as shipping address" color="black")
-                q-radio(v-model="checkBox" :val="2" label="Same as shipping address" color="black")
+                q-radio(v-model="checkBox" :val="2" label="Use a different billing address" color="black")
               billing-address.q-mt-lg(v-if="checkBox === 2")
     q-btn(@click="onSubmit(router)" label="Continue to Payment" icon-right="east" flat).submit
-  .col-xs-12.col-sm-12.col-md-5.col-lg-5.col-xl-5(v-if="isTablet")
+  section.right(v-if="isTablet")
     basket-section
 </template>
 
@@ -136,6 +136,13 @@ const formDataSecond = reactive({
 
 <style lang="scss" scoped>
 .payment-content {
+  gap: 70px;
+  .left {
+    width: 100%;
+  }
+  .right {
+    width: 100%;
+  }
   .q-mb-xl {
     margin-bottom: 50px;
     @media (max-width: $breakpoint-sm-max) {
@@ -143,6 +150,12 @@ const formDataSecond = reactive({
     }
     @media (max-width: $breakpoint-xs-max) {
       margin-bottom: 30px;
+    }
+  }
+  .user-form {
+    margin-bottom: 30px;
+    @media (max-width: $breakpoint-sm-max) {
+      margin-bottom: 20px;
     }
   }
   .q-mt-md {
@@ -216,7 +229,7 @@ const formDataSecond = reactive({
       .q-field__control {
         border-radius: 16px;
         background: #f1f3f6;
-        @media (max-width: $breakpoint-sm-max) {
+        @media (max-width: $breakpoint-xs-max) {
           height: 46px;
           min-height: 46px;
           .q-field__marginal {

@@ -4,16 +4,16 @@ q-page.row.shop
     q-carousel.text-white.swipper(v-model='slide' transition-prev='slide-right' transition-next='slide-left' swipeable='' animated='' control-color='white' arrows='')
       q-carousel-slide.column.no-wrap.flex-center(v-for="(item, index) in lol.basket" :name='index')
         q-img(:src='require(`src/assets/${item.img}.svg`)')
-    q-card(flat bordered).q-pa-md.counts
-      q-card-section.price
-        q-item.wrap.content-center
+    q-card(flat bordered).q-pa-none.counts
+      q-card-section.price-section.q-pa-none
+        q-item.wrap.content-center.q-pa-none
           q-item-label.text-capitalize {{ 'Price:' }}
           q-item-label.price {{ "$" + activeItem.price }}
           q-item-label.sell {{ "-80%" }}
-      q-card-section.quantity
-        q-item.wrap.content-center
+      q-card-section.quantity.q-pa-none
+        q-item.wrap.content-center.q-pa-none
           q-item-label.text-capitalize {{ 'Quantity:' }}
-          q-btn.bg-white(flat icon="minus" @click="activeItem.count--")
+          q-btn.bg-white(flat icon="minus" @click="activeItem.count !== 1 ? activeItem.count-- : ''")
           q-item-label.price {{ activeItem.count }}
           q-btn.bg-white(flat icon="plus" @click="activeItem.count++")
     q-item.text.column
@@ -30,14 +30,13 @@ q-page.row.shop
           q-item
             q-icon.pays(name="pays")
       q-card.support(flat bordered)
-        q-card-section
-          q-item
-            q-icon(name="support")
-            q-item-section
-              q-item-label {{'24/7'}}
-              q-item-label(caption) {{ 'Support' }}
+        q-item
+          q-icon(name="support")
+          q-item-section
+            q-item-label {{'24/7'}}
+            q-item-label(caption) {{ 'Support' }}
     .buttons.column.content-center
-      q-btn.send(flat :style="{width: '281px'}" label="Yes, I want" icon-right="east" @click="send")
+      q-btn.send(flat :style="{width: '281px'}" label="Yes, I want" icon-right="arrow-small-right" @click="send")
       q-btn(flat :style="{width: '281px'}" label="No, Thanks")
 </template>
 
@@ -97,9 +96,15 @@ const send = () => {
     }
   }
   .counts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
     margin-bottom: 40px;
     @media (max-width: $breakpoint-xs-max) {
       margin-bottom: 30px;
+      padding: 40px 16px;
     }
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -108,7 +113,8 @@ const send = () => {
     line-height: 30px !important;
     color: var(--midnight-express);
     border-radius: 16px;
-    .price {
+    .price-section {
+      margin-bottom: 25px;
       .q-item {
         gap: 11px;
         align-items: center;
@@ -133,6 +139,8 @@ const send = () => {
       position: relative;
       overflow: hidden;
       margin: 0 auto;
+      padding: 15px;
+      width: 100%;
       max-width: 520px;
       border-radius: 16px;
       &:before {
@@ -152,11 +160,18 @@ const send = () => {
         .text-capitalize {
           margin-right: 40px;
           color: var(--text-color);
+          @media (max-width: $breakpoint-xs-max) {
+            margin-right: 30px;
+          }
         }
         .q-btn {
           width: 50px;
           height: 50px;
           border-radius: 16px;
+          &::v-deep(.q-icon) {
+            width: 20px;
+            height: 20px;
+          }
         }
         .price {
           margin: 0 30px;
@@ -225,11 +240,17 @@ const send = () => {
     }
   }
   .support {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 35px 23px;
     max-width: calc(35% - 16px);
     width: 100%;
     @media (max-width: $breakpoint-xs-max) {
       max-width: inherit;
       width: 100%;
+      padding: 23px;
+      justify-content: start;
     }
     .q-item {
       justify-content: center;
@@ -282,6 +303,15 @@ const send = () => {
       background: var(--midnight-express);
       color: white;
       padding: 0;
+
+      &::v-deep(.q-icon ){
+        width: 19px;
+        height: 16px;
+        @media (max-width: $breakpoint-xs-max) {
+          width: 12px;
+          height: 10px;
+        }
+      }
       @media (max-width: $breakpoint-xs-max) {
         margin-bottom: 15px;
         border-radius: 10px;

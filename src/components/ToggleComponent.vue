@@ -1,5 +1,5 @@
 <template lang="pug">
-q-expansion-item.toggle-basket.q-mb-xl(v-if="!isTablet" v-model='show' :icon="`${show ? 'active-' : ''}basket`" label='Show order summary' :caption="'$' + totalPrice" header-class="text-default")
+q-expansion-item.toggle-basket(v-if="!isTablet" v-model='show' :icon="`${show ? 'active-' : ''}basket`" label='Show order summary' :caption="'$' + totalPrice" header-class="text-default")
   q-card
     q-card-section
       basket-section
@@ -21,6 +21,12 @@ const isTablet = computed(() => {
 <style scoped lang="scss">
 .toggle-basket {
   margin-top: 16px;
+  @media (max-width: $breakpoint-sm-max) {
+    margin-bottom: 30px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    margin-bottom: 20px;
+  }
   &.q-expansion-item--expanded {
     @media (max-width: $breakpoint-xs-max) {
       &::v-deep(.q-expansion-item__toggle-icon) {
@@ -33,6 +39,9 @@ const isTablet = computed(() => {
     border: 1px solid #D6D8EE;
     border-radius: 20px;
     min-height: inherit;
+    @media (max-width: $breakpoint-sm-max) {
+      padding: 18px 16px;
+    }
     .q-item__section--main {
       flex: inherit;
       .q-item__label--caption {
@@ -44,6 +53,19 @@ const isTablet = computed(() => {
         font-size: 16px;
         line-height: 26px;
         color: var(--midnight-express);
+      }
+      @media (max-width: $breakpoint-sm-max) {
+        .q-item__label {
+          font-size: 14px;
+        }
+      }
+    }
+    @media (max-width: $breakpoint-sm-max) {
+      .q-item__section {
+        min-width: inherit;
+        .q-icon {
+          font-size: 20px;
+        }
       }
     }
   }

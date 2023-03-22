@@ -90,7 +90,7 @@ const formData = reactive({
     .q-field__control {
       border-radius: 16px;
       background: #F1F3F6;
-      @media (max-width: $breakpoint-sm-max) {
+      @media (max-width: $breakpoint-xs-max) {
         height: 46px;
         min-height: 46px;
         .q-field__marginal {

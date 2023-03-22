@@ -26,6 +26,7 @@ const myIcons: any = {
   pays: `img:${require('src/assets/pays.svg')}`,
   plus: `img:${require('src/assets/plus.svg')}`,
   complete: `img:${require('src/assets/complete.svg')}`,
+  'arrow-small-right': `img:${require('src/assets/arrorw-small-right.svg')}`,
 };
 const $q = useQuasar();
 
